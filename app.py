@@ -21,6 +21,22 @@ def listar_tareas():
         estado = "✔" if t["completada"] else "✘"
         print(f"{i}. [{estado}] {t['titulo']}")
 
+def completar_tarea():
+    indice = int(input("Número de tarea a completar: ")) - 1
+    if 0 <= indice < len(tareas):
+        tareas[indice]["completada"] = True
+        print("Tarea marcada como completada.")
+    else:
+        print("Número inválido.")
+
+def eliminar_tarea():
+    indice = int(input("Número de tarea a eliminar: ")) - 1
+    if 0 <= indice < len(tareas):
+        eliminada = tareas.pop(indice)
+        print(f"Tarea '{eliminada['titulo']}' eliminada.")
+    else:
+        print("Número inválido.")
+
 def main():
     while True:
         mostrar_menu()
@@ -29,11 +45,15 @@ def main():
             agregar_tarea()
         elif opcion == "2":
             listar_tareas()
+        elif opcion == "3":
+            completar_tarea()
+        elif opcion == "4":
+            eliminar_tarea()
         elif opcion == "5":
             print("Saliendo del gestor...")
             break
         else:
-            print("Opción aún no implementada.")
+            print("Opción inválida.")
 
 if __name__ == "__main__":
     main()
